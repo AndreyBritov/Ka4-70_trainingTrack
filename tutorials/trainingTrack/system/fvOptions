@@ -117,76 +117,47 @@ turbine
             {
                 data (#include "../../resources/foilData/Ka4-70_02");
             }
-	    Ka025
-            {
-                data (#include "../../resources/foilData/Ka4-70_025");
-            }
 		
 	    Ka03
             {
                 data (#include "../../resources/foilData/Ka4-70_03");
             }
-	    Ka035
-            {
-                data (#include "../../resources/foilData/Ka4-70_035");
-            }
+
 	    Ka04
             {
                 data (#include "../../resources/foilData/Ka4-70_04");
             }
-	    Ka045
-            {
-                data (#include "../../resources/foilData/Ka4-70_045");
-            }
+	
 	    Ka05
             {
                 data (#include "../../resources/foilData/Ka4-70_05");
             }
-	    Ka055
-            {
-                data (#include "../../resources/foilData/Ka4-70_055");
-            }
+
 	    Ka06
             {
                 data (#include "../../resources/foilData/Ka4-70_06");
             }
-	    Ka065
-            {
-                data (#include "../../resources/foilData/Ka4-70_065");
-            }
+
 	    Ka07
             {
                 data (#include "../../resources/foilData/Ka4-70_07");
             }
-	    Ka075
-            {
-                data (#include "../../resources/foilData/Ka4-70_075");
-            }
+
 	    Ka08
             {
                 data (#include "../../resources/foilData/Ka4-70_08");
             }
-	    Ka085
-            {
-                data (#include "../../resources/foilData/Ka4-70_085");
-            }
+
 	    Ka09
             {
                 data (#include "../../resources/foilData/Ka4-70_09");
             }
-	    Ka095
-            {
-                data (#include "../../resources/foilData/Ka4-70_095");
-            }
+
 	    Ka10
             {
                 data (#include "../../resources/foilData/Ka4-70_10");
             }
-            cylinder
-            {
-                data ((-180 0 1.1)(180 0 1.1));
-		//data ((-180 0.2 0.5)(180 0.2 0.5));
-            }
+
         }
     }
 }
