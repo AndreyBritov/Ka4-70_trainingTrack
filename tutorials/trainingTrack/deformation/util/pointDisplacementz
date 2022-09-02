@@ -22,7 +22,7 @@ boundaryField
 {
     inlet
     {
-        type            uniformFixedValue;//uniformFixedValue;
+        type            uniformFixedValue;
         uniformValue    0;
     }
 
@@ -51,13 +51,10 @@ boundaryField
     down
     {
         type            timeVaryingMappedFixedValue;
-	//offset		0;
-//        setAverage      true;
-//        mapMethod       nearest;
+
+
         outOfBounds     clamp;
-      //  type            fixedValue;//uniformFixedValue;
-//        uniformValue    -1;
-        //value           nonuniform List<scalar> 
+
 
     }
 }

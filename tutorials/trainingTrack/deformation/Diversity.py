@@ -1,10 +1,9 @@
 import re
 f1 = open('ImportDataDefault.txt','r')
 f2 = open('ExportData.txt','r')
-#fresx = open('pointDisplacementx_prev', 'w')
-#fresy = open('pointDisplacementy_prev', 'w')
+
 fresz = open('pointDisplacementz', 'w')
-#f = open('resultzzzdontneed.txt','w')
+
 
 RezNumb1 = []
 temp1 = f1.read()
@@ -36,9 +35,6 @@ with open("ImportDataDefault.txt", 'r', buffering=1, encoding="utf8") as f1:
             ThrNumb1 = re.findall(r'-*\d+[\.]*[\d+]*[\w+\-\d+]*', RezNumb1[2])
             for elem in ThrNumb1:
                 Zrez1.append(elem)
-#f.write(result2[0]+'\n')
-#for p in range(0,len(Zrez1)):
-#    f.write(Zrez1[p] + '\n')
 
 
 RezNumb2 = []
@@ -79,21 +75,16 @@ for p in range(0,len(Zrez1)):
     Yrez3.append(Rez2)
     Zrez3.append(Rez3)
 
-#fresx.write(str(len(Xrez3))+'\n')
-#fresx.write(str('(')+'\n')
-#fresy.write(str(len(Yrez3))+'\n')
-#fresy.write(str('(')+'\n')
+
 fresz.write(str(len(Zrez3))+'\n')
 fresz.write(str('(')+'\n')
 
 for p in range(0,len(Zrez3)):
-    #fresx.write(Xrez3[p] + '\n')
-    #fresy.write(Yrez3[p] + '\n')
+
     fresz.write(Zrez3[p] + '\n')
 
 
-#fresx.write(str(')')+'\n')
-#fresy.write(str(')')+'\n')
+
 fresz.write(str(')')+'\n')
 
 
