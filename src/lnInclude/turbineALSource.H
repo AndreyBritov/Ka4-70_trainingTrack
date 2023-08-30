@@ -89,6 +89,8 @@ protected:
         //- Inlet velocity for specified inflow
         vector freeStreamVelocity_;
 
+	bool isCompressible_;
+
         //- Free stream velocity direction
         vector freeStreamDirection_;
 

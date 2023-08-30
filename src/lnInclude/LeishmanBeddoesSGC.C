@@ -85,6 +85,7 @@ void Foam::fv::LeishmanBeddoesSGC::calcUnsteady()
 void Foam::fv::LeishmanBeddoesSGC::calcSeparated()
 {
     // Calculate lagged trailing-edge separation point
+
     if (mag(alphaPrime_) < alpha1_)
     {
         fPrime_ = 1.0 - 0.4*exp((mag(alphaPrime_) - alpha1_)/S1_);
@@ -93,6 +94,8 @@ void Foam::fv::LeishmanBeddoesSGC::calcSeparated()
     {
         fPrime_ = 0.02 + 0.58*exp((alpha1_ - mag(alphaPrime_))/S2_);
     }
+
+
 
     // Evaluate vortex tracking time
     if (not stalledPrev_)
@@ -126,7 +129,6 @@ void Foam::fv::LeishmanBeddoesSGC::calcSeparated()
     {
         Vx_ = 0.0;
     }
-
     // Calculate normal force coefficient including dynamic separation point
     CNF_ = CNAlpha_*alphaEquiv_*pow(((1.0 + sqrt(fDoublePrime_))/2.0), 2)
          + CNI_;
@@ -192,7 +194,7 @@ Foam::fv::LeishmanBeddoesSGC::LeishmanBeddoesSGC
     LeishmanBeddoes3G(dict, modelName, time, profileData),
     TAlpha_(coeffs_.lookupOrDefault("TAlpha", 6.30)),
     alphaPrimePrev_(0.0),
-    alphaCrit_(17.0),
+    alphaCrit_(17.91),
     r_(0.0),
     r0_(coeffs_.lookupOrDefault("r0", 0.01)),
     B1_(coeffs_.lookupOrDefault("B1", 0.5)),

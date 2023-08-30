@@ -55,6 +55,7 @@ void Foam::fv::actuatorLineElement::read()
     dict_.lookup("spanLength") >> spanLength_;
     dict_.lookup("spanDirection") >> spanDirection_;
     dict_.lookup("freeStreamVelocity") >> freeStreamVelocity_;
+    dict_.lookup("compressible") >> compressible_;
     if (mag(freeStreamVelocity_) == 0)
     {
         freeStreamDirection_=vector(1, 0, 0);
@@ -98,14 +99,28 @@ void Foam::fv::actuatorLineElement::read()
     }
 
     // Read nu from object registry
-    const dictionary& transportProperties = mesh_.lookupObject<IOdictionary>
-    (
-        "transportProperties"
-    );
-    dimensionedScalar nu;
-    transportProperties.lookup("nu") >> nu;
-    nu_ = nu.value();
-
+    if (compressible_ == false)
+    {
+        const dictionary& transportProperties = mesh_.lookupObject<IOdictionary>
+	(
+    	    "transportProperties"
+	);
+	dimensionedScalar nu;
+	transportProperties.lookup("nu") >> nu;
+	nu_ = nu.value();
+    }
+    else
+    {
+	    const dictionary& thermophysicalProperties = mesh_.lookupObject<IOdictionary>
+	(
+    	    "thermophysicalProperties"
+	);
+	dictionary mixture = thermophysicalProperties.subDict("mixture");
+	dictionary transport = mixture.subDict("transport");
+	dimensionedScalar nu;
+	transport.lookup("mu") >> nu;
+	nu_ = nu.value();
+    }
     // Read writePerf switch
     dict_.lookup("writePerf") >> writePerf_;
 

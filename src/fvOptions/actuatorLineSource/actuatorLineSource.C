@@ -55,7 +55,8 @@ bool Foam::fv::actuatorLineSource::read(const dictionary& dict)
 {
     if (cellSetOption::read(dict))
     {
-
+	
+	
         coeffs_.lookup("fieldNames") >> fieldNames_;
         applied_.setSize(fieldNames_.size(), false);
 
@@ -65,7 +66,7 @@ bool Foam::fv::actuatorLineSource::read(const dictionary& dict)
         coeffs_.lookup("elementGeometry") >> elementGeometry_;
         coeffs_.lookup("nElements") >> nElements_;
         coeffs_.lookup("freeStreamVelocity") >> freeStreamVelocity_; 
-	//defDir = vector (1, 0, 0);
+	coeffs_.lookup("compressible") >> isCompressible_;
 	if (mag(freeStreamVelocity_) == 0)
 	{
 	    //Info << "1" << endl;
@@ -334,6 +335,7 @@ void Foam::fv::actuatorLineSource::createElements()
         dict.add("profileName", profileName);
         dict.add("chordLength", chordLength);
         dict.add("chordDirection", chordDirection);
+	dict.add("compressible", isCompressible_);
         dict.add("chordRefDirection", chordRefDirection);
         dict.add("spanLength", spanLength);
         dict.add("spanDirection", spanDirection);

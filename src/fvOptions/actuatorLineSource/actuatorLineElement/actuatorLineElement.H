@@ -201,6 +201,8 @@ protected:
         //- Number of elements used to sample velocities
         label nVelocitySamples_;
 
+	bool compressible_;
+
 
     // Protected Member Functions
 

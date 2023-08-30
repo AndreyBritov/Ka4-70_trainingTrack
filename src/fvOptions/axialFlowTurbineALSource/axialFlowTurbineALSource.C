@@ -92,9 +92,9 @@ void Foam::fv::axialFlowTurbineALSource::createBlades()
         );
 
         bladeSubDict.add("freeStreamVelocity", freeStreamVelocity_);
+	bladeSubDict.add("compressible", coeffs_.lookup("compressible"));
         bladeSubDict.add("fieldNames", coeffs_.lookup("fieldNames"));
         bladeSubDict.add("profileData", profileData_);
-
         // Disable individual lifting line end effects model if rotor-level
         // end effects model is active
         if
@@ -583,6 +583,7 @@ Foam::fv::axialFlowTurbineALSource::axialFlowTurbineALSource
     )
 {
     read(dict);
+
     createCoordinateSystem();
     createBlades();
     if (hasHub_)
@@ -777,7 +778,6 @@ void Foam::fv::axialFlowTurbineALSource::addSup
 )
 {
     // Rotate the turbine if time value has changed
-    Info << "Okay2" << endl;
     if (time_.value() != lastRotationTime_)
     {
         rotate();
@@ -849,13 +849,27 @@ void Foam::fv::axialFlowTurbineALSource::addSup
 
     scalar rhoRef;
     coeffs_.lookup("rhoRef") >> rhoRef;
+
+    
     //Info << "1" << endl;
+    
+    if (mag(freeStreamVelocity_) == 0)
+    {
+	Info << "1" << endl;
+    torqueCoefficient_ = torque_ /(0.5*rhoRef*frontalArea_
+                       * magSqr(omega_*rotorRadius_ ));
+    powerCoefficient_ = torqueCoefficient_*tipSpeedRatio_;
+    dragCoefficient_ = force_ & freeStreamDirection_
+                     / (0.5*rhoRef*frontalArea_*magSqr(omega_ * rotorRadius_));
+    }
+    else
+    {                 
     torqueCoefficient_ = torque_/(0.5*rhoRef*frontalArea_*rotorRadius_
                        * magSqr(freeStreamVelocity_));
     powerCoefficient_ = torqueCoefficient_*tipSpeedRatio_;
     dragCoefficient_ = force_ & freeStreamDirection_
                      / (0.5*rhoRef*frontalArea_*magSqr(freeStreamVelocity_));
-
+    }
     // Print performance to terminal
     printPerf();
 

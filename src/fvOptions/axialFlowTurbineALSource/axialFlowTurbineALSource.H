@@ -93,6 +93,8 @@ protected:
         //- Switch to include tower drag in turbine drag coefficient
         bool includeTowerDrag_;
 
+	bool isCompressible_;
+
         //- Switch to include nacelle drag in turbine drag coefficient
         bool includeNacelleDrag_;
 

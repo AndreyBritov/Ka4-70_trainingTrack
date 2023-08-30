@@ -347,7 +347,7 @@ bool Foam::fv::turbineALSource::read(const dictionary& dict)
         coeffs_.lookup("rotorRadius") >> rotorRadius_;
         coeffs_.lookup("angleVelocity") >> omega_;
         //angleDeg_=omega_* lastRotationTime_;
-        Info<<"angleDeg"<<angleDeg_<<endl;
+	coeffs_.lookup("compressible") >> isCompressible_;
         tsrAmplitude_ = coeffs_.lookupOrDefault("tsrAmplitude", 0.0);
         tsrPhase_ = coeffs_.lookupOrDefault("tsrPhase", 0.0);
 

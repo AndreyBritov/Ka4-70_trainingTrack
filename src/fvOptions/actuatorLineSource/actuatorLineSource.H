@@ -85,6 +85,8 @@ protected:
         //- Free stream direction
         vector freeStreamDirection_;
 
+	bool isCompressible_;
+
         //- Total force vector from all elements
         vector force_;
 
